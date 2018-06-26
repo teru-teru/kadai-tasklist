@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def new
     @user = User.new
   end
@@ -7,7 +8,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
-      flash[:success] = 'ユーザを登録しました。さあタスク管理をはじめよう！'
+      flash[:success] = 'ユーザを登録しました。「新規タスクの作成」をしよう！'
+      session[:user_id] = @user.id
       redirect_to root_url
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
